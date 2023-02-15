@@ -1,0 +1,15 @@
+-
+ name: this will install based on task allocated
+ hosts: servers
+ become: yes
+ tasks:
+   - name: install Docker
+     apt:
+       name: docker.io
+       state: latest
+     when: ansible_distribution == "Ubuntu" or ansible_distribution == 'Red Hat Enterprise Linux'
+   - name: install aws cli
+     apt:
+       name: awscli
+       state: latest
+     when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
